@@ -92,7 +92,7 @@ print(f"STEP 5  Found {len(loads)} loads"
 # STEP 6: Remember the original values 
 
 # Writing from Python changes the project itself, so we restore it at the end.
-original_loads = {name: (obj.plini, obj.qlini) for name, obj in loads.items()}
+original_loads = {name: (obj.plini) for name, obj in loads.items()}
 print("STEP 6  Original load values stored.")
 
 
@@ -140,8 +140,8 @@ finally:
     # STEP 8: Restore the original value  
     # # Switch PowerFactory's messages back on.
     app.EchoOn()
-    for name, (p0, q0) in original_loads.items():
-        loads[name].plini, loads[name].qlini = p0, q0
+    for name, (p0) in original_loads.items():
+        loads[name].plini = p0
     print("STEP 8  Original values restored in PowerFactory.")
 
 runtime = time.perf_counter() - t_start
